@@ -2,11 +2,11 @@
   "name": "health-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "local": "nodemon --watch ./src --watch index.js",
-    "start": "node index.js"
+    "local": "nodemon --watch ./src",
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/dlgustn555/health-server#readme",
   "dependencies": {
+    "koa": "^2.13.0",
+    "koa-router": "^10.0.0",
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6"
   }
