@@ -1,6 +1,6 @@
 const Koa = require('koa')
-const Router = require('koa-router');
 const mongoose = require('mongoose')
+const router = require('./routes')
 
 mongoose.connect('mongodb://localhost:27017/health', {useUnifiedTopology: true, useNewUrlParser: true})
 
@@ -13,16 +13,10 @@ db.once('open', function() {
 });
 
 const server = new Koa()
-const router = Router()
-
-// router.use('/api', )
-router.get('/', (ctx) => {
-    ctx.body = 'GET TEST!!!'
-})
 
 server.use(router.routes());
-server.use(router.allowedMethods());
 
+server.use(router.routes())
 server.listen(7500, () => {
     console.log('[SERVER] Running In PORT: 7500')
 })
