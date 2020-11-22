@@ -1,0 +1,25 @@
+{
+  "name": "health-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "nodemon --watch ./src --watch index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlgustn555/health-server.git"
+  },
+  "author": "Lee HyunSu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlgustn555/health-server/issues"
+  },
+  "homepage": "https://github.com/dlgustn555/health-server#readme",
+  "dependencies": {
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6"
+  }
+}
