@@ -3,6 +3,6 @@ const diary = require('./diary')
 
 const router = Router()
 
-router.use('/diray', diary.routes())
+router.use('/diary', diary.routes())
 
 module.exports = router
