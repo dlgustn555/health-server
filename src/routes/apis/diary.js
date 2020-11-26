@@ -8,8 +8,7 @@ router.get('/', (ctx) => {
 })
 
 router.patch('/program', (ctx) => {
-    const {program} = ctx.request.body
-    diaryService.patchProgram(program)
-    ctx.body = 'SUCCSS'
+    const result = diaryService.patchProgram(ctx.request.body)
+    ctx.body = result
 })
 module.exports = router

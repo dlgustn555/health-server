@@ -8,4 +8,4 @@ const DiarySchema = new mongoose.Schema({
     practice: String
 })
 
-module.exports = DiarySchema
+module.exports = mongoose.model('diary', DiarySchema)

@@ -3,6 +3,10 @@ const bodyParser = require('koa-bodyparser')
 const mongoose = require('mongoose')
 const router = require('./routes')
 
+
+// Node.js의 native Promise 사용
+mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb://localhost:27017/health', {
     useUnifiedTopology: true,
     useNewUrlParser: true
