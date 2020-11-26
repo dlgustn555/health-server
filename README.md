@@ -5,6 +5,11 @@
 이럴때 ipconfig로 네트워크 설정IP 확인을 해보면, IP가 변경되어있었음<br/>
 VirtualBox의 호스트네트워크설정을 다시 변경해 줌
 
+#### 방화벽해제
+```
+$ sudo systemctl stop firewalld
+```
+
 ## Mongo DB
 
 - database: health
