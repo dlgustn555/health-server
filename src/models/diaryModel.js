@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 const DiarySchema = new mongoose.Schema({
-    todoDate: {type: Date},
+    todoMonth: String,
+    todoDate: String,
     modifyDate: {type: Date, default: Date.now},
     program: String,
     plan: String,
