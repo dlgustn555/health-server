@@ -22,7 +22,7 @@ router.patch('/program', async (ctx) => {
 
 /**
  *
- * @descrption M월 조회 API
+ * @descrption M-1, M, M+1월 조회 API
  *
  * @param {string} thisMonth 조회할 M월 ex) '2020.10'
  * @param {string} prevMonth M-1월 ex) '2020.9'

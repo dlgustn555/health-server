@@ -9,11 +9,13 @@ const patchProgram = async ({program, year, month, date}) => {
     return await QUERY.findOneAndUpdate(Diary, conditions, update)
 }
 
-// M월을 조회한다.
-const getMonth = async ({year, month}) => {
-    const filter = {todoDate: {}}
+// M-1, M, M+1월을 조회한다.
+const getMonth = async ({prevMonth, thisMonth, nextMonth}) => {
+    const filter = {todoMonth: {$in: [prevMonth, thisMonth, nextMonth]}}
+    return await QUERY.find(Diary, filter)
 }
 
 module.exports = {
-    patchProgram
+    patchProgram,
+    getMonth
 }
