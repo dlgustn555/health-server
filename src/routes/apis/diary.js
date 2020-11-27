@@ -7,8 +7,8 @@ router.get('/', (ctx) => {
     ctx.body = 'DIARY.... GT...!!!'
 })
 
-router.patch('/program', (ctx) => {
-    const result = diaryService.patchProgram(ctx.request.body)
+router.patch('/program', async (ctx) => {
+    const result = await diaryService.patchProgram(ctx.request.body)
     ctx.body = result
 })
 module.exports = router
