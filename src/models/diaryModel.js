@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 const DiarySchema = new mongoose.Schema({
-    todoMonth: String,
-    todoDate: String,
-    modifyDate: {type: Date, default: Date.now},
+    date: {type: Date},
+    month: {type: Date},
     program: String,
     plan: String,
-    practice: String
+    practice: String,
+    modifyDate: {type: Date, default: Date.now}
 })
 
 module.exports = mongoose.model('diary', DiarySchema)
