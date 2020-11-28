@@ -9,15 +9,15 @@ const patchTest = async ({program, year, month, date}) => {
 
 // "프로그램명" 을 수정한다.
 const patchProgram = async ({program, year, month, date}) => {
-    const conditions = {date: new Date(year, month, date)}
-    const update = {program, month: new Date(year, month)}
+    const conditions = {year, month, date}
+    const update = {program, year, month, date}
 
     return await QUERY.findOneAndUpdate(Diary, conditions, update)
 }
 
 // M월을 조회한다.
 const getMonth = async ({year, month}) => {
-    const filter = {month: new Date(year, month)}
+    const filter = {year, month}
     return await QUERY.find(Diary, filter)
 }
 
