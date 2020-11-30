@@ -3,14 +3,24 @@ const diaryService = require('../../services/diaryService')
 
 const router = new Router()
 
-router.get('/', (ctx) => {
-    ctx.body = 'DIARY.... GT...!!!'
-})
-
 router.patch('/test', async (ctx) => {
     const result = await diaryService.patchTest(ctx.request.body)
     ctx.body = result
 })
+
+/**
+ * @description YYYY.M.D 운동일지 조회 API
+ * 
+ * @param {number} year 년도
+ * @param {number} month 월 ex) 2월 => 1
+ * @param {number} date 날짜 
+ */
+router.get('/', async(ctx) => {
+    const result = await diaryService.getDiary(ctx.query)
+    ctx.body = result
+})
+
+
 
 /**
  * @description 프로그래명 수정 API

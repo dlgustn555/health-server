@@ -27,6 +27,14 @@ const query = {
         } catch (error) {
             return {success: false, result: {data: null, error}}
         }
+    },
+    findOne: async (model, filter = {}) => {
+        try {
+            const data = await model.findOne(filter)
+            return {success: true, result: {data, error: null}}
+        } catch (error) {
+            return {success: false, result: {data: null, error}}
+        }
     }
 }
 
