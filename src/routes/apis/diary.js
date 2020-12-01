@@ -10,17 +10,15 @@ router.patch('/test', async (ctx) => {
 
 /**
  * @description YYYY.M.D 운동일지 조회 API
- * 
+ *
  * @param {number} year 년도
  * @param {number} month 월 ex) 2월 => 1
- * @param {number} date 날짜 
+ * @param {number} date 날짜
  */
-router.get('/', async(ctx) => {
+router.get('/', async (ctx) => {
     const result = await diaryService.getDiary(ctx.query)
     ctx.body = result
 })
-
-
 
 /**
  * @description 프로그래명 수정 API
@@ -35,6 +33,18 @@ router.patch('/program', async (ctx) => {
     ctx.body = result
 })
 
+/**
+ * @description 프로그램 내용 수정 API
+ *
+ * @param {object} content 프로그램 내용
+ * @param {number} year 년도
+ * @param {number} month 월 ex) 2월 => 1
+ * @param {number} date 날짜
+ */
+router.patch('/program/content', async (ctx) => {
+    const result = await diaryService.patchProgramContent(ctx.request.body)
+    ctx.body = result
+})
 /**
  *
  * @descrption M월 조회 API

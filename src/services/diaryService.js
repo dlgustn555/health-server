@@ -8,7 +8,7 @@ const patchTest = async ({program, year, month, date}) => {
 }
 
 // YYYY.M.D 운동일지 조회한다.
-const getDiary = async({year, month, date}) => {
+const getDiary = async ({year, month, date}) => {
     const filter = {year, month, date}
     console.log(filter)
     return await QUERY.findOne(Diary, filter)
@@ -22,6 +22,13 @@ const patchProgram = async ({program, year, month, date}) => {
     return await QUERY.findOneAndUpdate(Diary, conditions, update)
 }
 
+// "프로그램 내용"을 수정한다.
+const patchProgramContent = async ({content, year, month, date}) => {
+    const conditions = {year, month, date}
+    const update = {...content}
+    return await QUERY.findOneAndUpdate(Diary, conditions, update)
+}
+
 // M월을 조회한다.
 const getMonth = async ({year, month}) => {
     const filter = {year, month}
@@ -31,6 +38,7 @@ const getMonth = async ({year, month}) => {
 module.exports = {
     getDiary,
     patchProgram,
+    patchProgramContent,
     getMonth,
     patchTest
 }
