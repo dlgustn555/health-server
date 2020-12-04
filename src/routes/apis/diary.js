@@ -9,21 +9,37 @@ router.patch('/test', async (ctx) => {
 })
 
 /**
+ *
+ * @descrption M월 조회 API
+ *
+ * @param {number} year 년도
+ * @param {number} month 월 ex) 2월 => 1
+ */
+router.get('/month', async (ctx) => {
+    const result = await diaryService.getMonth(ctx.query)
+    ctx.body = result
+})
+
+/**
  * @description YYYY.M.D 운동일지 조회 API
  *
  * @param {number} year 년도
  * @param {number} month 월 ex) 2월 => 1
  * @param {number} date 날짜
  */
-router.get('/', async (ctx) => {
+router.get('/date', async (ctx) => {
     const result = await diaryService.getDiary(ctx.query)
     ctx.body = result
 })
 
 /**
- * @description 프로그래명 수정 API
+ * @description 프로그램 수정 API
  *
- * @param {string} program 프로그램명 ex) '가슴+삼두'
+ * @param {object} program 프로그램 object
+ * @param {number} program.order 정렬 순서
+ * @param {string} program.name 프로그래명
+ * @param {array} program.plan 프로그램 계획
+ * @param {array} program.practice 프로그램 계획
  * @param {number} year 년도
  * @param {number} month 월 ex) 2월 => 1
  * @param {number} date 날짜
@@ -43,17 +59,6 @@ router.patch('/program', async (ctx) => {
  */
 router.patch('/program/content', async (ctx) => {
     const result = await diaryService.patchProgramContent(ctx.request.body)
-    ctx.body = result
-})
-/**
- *
- * @descrption M월 조회 API
- *
- * @param {number} year 년도
- * @param {number} month 월 ex) 2월 => 1
- */
-router.get('/month', async (ctx) => {
-    const result = await diaryService.getMonth(ctx.query)
     ctx.body = result
 })
 
