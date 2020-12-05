@@ -32,50 +32,31 @@ router.get('/date', async (ctx) => {
     ctx.body = result
 })
 
+
 /**
  * @description 프로그램 추가 API
  *
- * @param {object} program 프로그램 object
- * @param {number} program.order 정렬 순서
- * @param {string} program.name 프로그래명
- * @param {array}  program.plan 프로그램 계획
- * @param {array}  program.practice 프로그램 계획
- 
  * @param {number} year 년도
  * @param {number} month 월 ex) 2월 => 1
  * @param {number} date 날짜
+ * @param {number} order 정렬 순서
+ * @param {string} program 프로그래명
  */
-router.patch('/program/add', async (ctx) => {
-    const result = await diaryService.patchAddProgram(ctx.request.body)
+router.post('/program/add', async (ctx) => {
+    const result = await diaryService.addProgram(ctx.request.body)
     ctx.body = result
 })
 
 /**
- * @description 프로그램 수정 API
+ * @description 프로그램명 수정 API
  *
- * @param {string} _id Diary key
- * @param {object} program 프로그램 object
- * @param {number} program.order 정렬 순서
- * @param {string} program.name 프로그래명
- * @param {array}  program.plan 프로그램 계획
- * @param {array}  program.practice 프로그램 계획
+ * @param {string} _id 
+ * @param {number} order 정렬 순서
+ * @param {string} program 프로그래명
  */
 router.patch('/program/modify', async (ctx) => {
-    const result = await diaryService.patchModifyProgram(ctx.request.body)
+    const result = await diaryService.modifyProgram(ctx.request.body)
     ctx.body = result
 })
-
-/**
- * @description 프로그램 내용 수정 API
- *
- * @param {object} content 프로그램 내용
- * @param {number} year 년도
- * @param {number} month 월 ex) 2월 => 1
- * @param {number} date 날짜
- */
-// router.patch('/program/content', async (ctx) => {
-//     const result = await diaryService.patchProgramContent(ctx.request.body)
-//     ctx.body = result
-// })
 
 module.exports = router

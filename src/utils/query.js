@@ -8,6 +8,14 @@ const exceutQuery = async (query) => {
 }
 
 const query = {
+    save: async (model) => {
+        try {
+            const data = await model.save();
+            return {success: true, result: {data, error: null}}
+        } catch (error) {
+            return {success: false, result: {data: null, error}}
+        }
+    },
     findOneAndUpdate: async (model, conditions, update, options = {}) => {
         try {
             const data = await model.findOneAndUpdate(conditions, update, {
