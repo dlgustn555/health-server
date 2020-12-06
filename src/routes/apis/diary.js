@@ -20,18 +20,6 @@ router.get('/month', async (ctx) => {
     ctx.body = result
 })
 
-/**
- * @description YYYY.M.D 운동일지 조회 API
- *
- * @param {number} year 년도
- * @param {number} month 월 ex) 2월 => 1
- * @param {number} date 날짜
- */
-router.get('/date', async (ctx) => {
-    const result = await diaryService.getDiary(ctx.query)
-    ctx.body = result
-})
-
 
 /**
  * @description 프로그램 추가 API
@@ -56,6 +44,16 @@ router.post('/program/add', async (ctx) => {
  */
 router.patch('/program/modify', async (ctx) => {
     const result = await diaryService.modifyProgram(ctx.request.body)
+    ctx.body = result
+})
+
+/**
+ * @descrption diary._id 인 다이어리 조회 API
+ * 
+ * @param {string} _id 다이어리 _id
+ */
+router.get('/content/:_id', async(ctx) => {
+    const result = await diaryService.getDiary(ctx.params)
     ctx.body = result
 })
 

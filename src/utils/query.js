@@ -43,6 +43,14 @@ const query = {
         } catch (error) {
             return {success: false, result: {data: null, error}}
         }
+    },
+    findById: async (model, id, projection = {}) => {
+        try {
+          const data = await model.findById(id, projection);
+          return {success: true, result: {data, error: null}}
+        } catch (error) {
+            return {success: false, result: {data: null, error}}
+        }
     }
 }
 

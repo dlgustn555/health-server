@@ -8,16 +8,16 @@ const patchTest = async ({program, year, month, date}) => {
     return await QUERY.findOneAndUpdate(Diary, conditions, update)
 }
 
+// _id로 운동일지를 조회한다.
+const getDiary = async ({_id}) => {
+    const filter = {_id}
+    return await QUERY.findById(Diary, filter)
+}
+
 // YYYY.M월을 조회한다.
 const getMonth = async ({year, month}) => {
     const filter = {year, month}
     return await QUERY.find(Diary, filter)
-}
-
-// YYYY.M.D 운동일지 조회한다.
-const getDiary = async ({year, month, date}) => {
-    const filter = {year, month, date}
-    return await QUERY.findOne(Diary, filter)
 }
 
 // "프로그램" 을 추가한다.
