@@ -15,32 +15,39 @@ const getDiary = async ({_id}) => {
 }
 
 // YYYY.M월을 조회한다.
-const getMonth = async ({year, month}) => {
+const getMonthDiaries = async ({year, month}) => {
     const filter = {year, month}
     return await QUERY.find(Diary, filter)
 }
 
-// "프로그램" 을 추가한다.
-const addProgram = async ({year, month, date, order, program}) => {
+// "프로그램명" 을 추가한다.
+const addProgramName = async ({year, month, date, order, program}) => {
     const diary = new Diary({
         year, month, date, order, program, plan: [], practice: []
     })
-    
     return await QUERY.save(diary)
 }
 
-// "프로그램" 을 수정한다.
-const modifyProgram = async ({_id, program}) => {
+// "프로그램명" 을 수정한다.
+const modifyProgramName = async ({_id, program}) => {
     const conditions = {_id}
     const update = {program}
+    return await QUERY.findOneAndUpdate(Diary, conditions, update)
+}
 
+// "Plan or Practice" 프로그램 내용을 수정한다.
+const modifyProgramContent = async ({_id, order, program, type}) => {
+    const conditions = {_id}
+    const target = `${type}.${order}`
+    const update = {$set: {[target]: program}}
     return await QUERY.findOneAndUpdate(Diary, conditions, update)
 }
 
 module.exports = {
     getDiary,
-    addProgram,
-    modifyProgram,
-    getMonth,
+    addProgramName,
+    modifyProgramName,
+    getMonthDiaries,
+    modifyProgramContent,
     patchTest
 }
