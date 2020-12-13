@@ -49,10 +49,27 @@ const modifyProgramContent = async ({ _id, order, program, type }) => {
   return await QUERY.findOneAndUpdate(Diary, conditions, update);
 };
 
+// "프로그램" 을 삭제한다.
 const deleteProgram = async ({ _id }) => {
   const conditions = { _id };
-  console.log(conditions);
   return await QUERY.findOneAndDelete(Diary, conditions);
+};
+
+// "프로그램" 일부 콘텐츠를 삭제한다.
+const deleteProgramContent = async ({ _id, order, type }) => {
+  const conditions = { _id };
+
+  const result = await QUERY.findOneAndUpdate(Diary, conditions, {
+    $set: { [`${type}.${order}`]: null },
+  });
+
+  if (!result.success) {
+    return result;
+  }
+
+  return await QUERY.findOneAndUpdate(Diary, conditions, {
+    $pull: { [type]: null },
+  });
 };
 
 module.exports = {
@@ -62,5 +79,6 @@ module.exports = {
   getMonthDiaries,
   modifyProgramContent,
   deleteProgram,
+  deleteProgramContent,
   patchTest,
 };

@@ -79,4 +79,16 @@ router.delete("/program/delete/:_id", async (ctx) => {
   ctx.body = result;
 });
 
+/**
+ * @description Plan or Pracitce 프로그램 내용 삭제 API
+ *
+ * @param {string} _id
+ * @param {number} order 정렬 순서
+ * @param {string} type 프로그램 타입 ex) Plan or Practice
+ */
+router.put("/program/content", async (ctx) => {
+  const result = await diaryService.deleteProgramContent(ctx.request.body);
+  ctx.body = result;
+});
+
 module.exports = router;
