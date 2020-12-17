@@ -30,6 +30,7 @@ const addProgramName = async ({ year, month, date, order, program }) => {
     program,
     plan: [],
     practice: [],
+    images: [],
   });
   return await QUERY.save(diary);
 };
@@ -72,6 +73,14 @@ const deleteProgramContent = async ({ _id, order, type }) => {
   });
 };
 
+// 업로드한 이미지 binary 를 수정한다.
+const updateUploadImage = async ({ _id, order, file }) => {
+  const conditions = { _id };
+  const target = `images.${order}`;
+  const update = { $set: { [target]: file } };
+  return await QUERY.findOneAndUpdate(Diary, conditions, update);
+};
+
 module.exports = {
   getDiary,
   addProgramName,
@@ -80,5 +89,6 @@ module.exports = {
   modifyProgramContent,
   deleteProgram,
   deleteProgramContent,
+  updateUploadImage,
   patchTest,
 };

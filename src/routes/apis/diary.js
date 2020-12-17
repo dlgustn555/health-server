@@ -1,4 +1,7 @@
 const Router = require("koa-router");
+const multer = require("@koa/multer");
+const upload = multer({ dest: "/images" });
+
 const diaryService = require("../../services/diaryService");
 
 const router = new Router();
@@ -88,6 +91,18 @@ router.delete("/program/delete/:_id", async (ctx) => {
  */
 router.put("/program/content", async (ctx) => {
   const result = await diaryService.deleteProgramContent(ctx.request.body);
+  ctx.body = result;
+});
+
+/**
+ * @description 업로드한 이미지 binary 업데이트 API
+ *
+ * @param {string} _id
+ * @param {number} order 이미지 순서
+ * @param {string} file 이미지 binary
+ */
+router.patch("/image/upload", async (ctx) => {
+  const result = await diaryService.updateUploadImage(ctx.request.body);
   ctx.body = result;
 });
 
