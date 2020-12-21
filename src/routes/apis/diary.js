@@ -1,6 +1,4 @@
 const Router = require("koa-router");
-const multer = require("@koa/multer");
-const upload = multer({ dest: "/images" });
 
 const diaryService = require("../../services/diaryService");
 

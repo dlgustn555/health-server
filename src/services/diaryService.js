@@ -17,7 +17,8 @@ const getDiary = async ({ _id }) => {
 // YYYY.M월을 조회한다.
 const getMonthDiaries = async ({ year, month }) => {
   const filter = { year, month };
-  return await QUERY.find(Diary, filter);
+  const options = { sort: { date: 1 } };
+  return await QUERY.find(Diary, filter, null, options);
 };
 
 // "프로그램명" 을 추가한다.
